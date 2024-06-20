@@ -6,6 +6,7 @@ import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
 import useHipolabs from "./hooks/useHipolabs";
 import { options } from "./constants";
+
 const Container = styled.div`
   display: flex;
   flex-direction: column;
@@ -25,17 +26,21 @@ const Home =  () => {
   
   const [value, setValue] = useState(options[0]);
   const [inputValue, setInputValue] = useState(options[0]);
-  const { data, isLoading, error } = useHipolabs({ country: value })
+  const { data, isLoading, error, getListFor } = useHipolabs({ country: value })
+
+  useEffect(() => {
+    getListFor(value)
+  }, [value])
 
   return (
     <Container>
       <ResponsiveAutocomplete
         value={value}
-        onChange={(event, newValue) => {
+        onChange={(_event, newValue) => {
           setValue(newValue);
         }}
         inputValue={inputValue}
-        onInputChange={(event, newInputValue) => {
+        onInputChange={(_event, newInputValue) => {
           setInputValue(newInputValue);
         }}
         options={options}

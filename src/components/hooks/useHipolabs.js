@@ -1,12 +1,15 @@
 import React, { useState, useEffect} from "react";
 import axios from "axios";
 
-const useHipolabs = ({country}) => {
+const useHipolabs = () => {
   const [data, setData] = useState([])
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState(null)
+  const [country, setCountry] = useState()
 
   useEffect(() => {
+    if (!country) return
+    
     setIsLoading(true)
 
     axios.get(`http://universities.hipolabs.com/search?country=${country}`)
@@ -27,9 +30,9 @@ const useHipolabs = ({country}) => {
     .finally(() => {
       setIsLoading(false)
     })
-  }, [])
+  }, [country])
   
-  return { data, isLoading, error }
+  return { data, isLoading, error, getListFor: setCountry }
 }
 
 export default useHipolabs;
