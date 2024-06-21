@@ -51,7 +51,6 @@ function hiplabsReducer(state, action) {
       return { ...state, isLoading: false, data: [], error: action.error };
     }
     case 'SET_FAVOURITES': {
-      console.log("setting faves in reducer", action.favourites)
       return { ...state, favourites: action.favourites };
     }
     case 'SET_COUNTRY': {
