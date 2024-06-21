@@ -51,9 +51,8 @@ function hiplabsReducer(state, action) {
       return { ...state, isLoading: false, data: [], error: action.error };
     }
     case 'SET_FAVOURITES': {
-      // TODO: remove this from here
-      // localStorage.setItem('favourites', JSON.stringify(action.payload));
-      return { ...state, favourites: action.payload };
+      console.log("setting faves in reducer", action.favourites)
+      return { ...state, favourites: action.favourites };
     }
     case 'SET_COUNTRY': {
       return { ...state, country: action.country };

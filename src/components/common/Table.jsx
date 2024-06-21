@@ -7,7 +7,7 @@ import StarIcon from "@mui/icons-material/Star";
 import Link from "@mui/material/Link";
 import { useMediaQuery } from "@mui/material";
 import styled from "@emotion/styled";
-
+import Favourite from "./Favourite";
 
 
 const DataContainer = styled.div`
@@ -19,35 +19,14 @@ const DataContainer = styled.div`
 const theme = createTheme();
 
 const SchoolsTable = ({ data }) => {
-  const [favourites, setFavourites] = useState(() => JSON.parse(window.localStorage.getItem("favourites")) || []);
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
-  const updateFavourites = (row) => {
-    let tempFavorites = [...favourites]
-    if (favourites.find(fav => fav.name === row.name)) {
-      setFavourites([...tempFavorites].filter(fav => fav.name !== row.name))
-    } else {
-      setFavourites([...tempFavorites, row])
-    }
-  }
-
-  useEffect(() => {
-    if (!favourites) return;
-
-    window.localStorage.setItem("favourites", JSON.stringify(favourites))
-  }, [favourites])
-
- 
   const columns = useMemo(() => [
     {
       field: "favourite",
       renderHeader: () => null,
       renderCell: (cellValues) => {
-        return (
-          <IconButton onClick={() => updateFavourites(cellValues.row)}>
-           {favourites && favourites.find(fav => fav.name == cellValues.row.name) ? <StarIcon /> : <StarBorderIcon />}
-          </IconButton>
-        )
+        return <Favourite university={cellValues.row} />
       },
       width: isMobile ? 50 : 100,
     },
@@ -73,11 +52,11 @@ const SchoolsTable = ({ data }) => {
 
   return (
     <ThemeProvider theme={theme}>
-      {(data || favourites) && 
+      {data && 
         <DataContainer>
           <DataGrid
             autoHeight
-            rows={data || favourites}
+            rows={data}
             columns={columns}
           />
         </DataContainer>
