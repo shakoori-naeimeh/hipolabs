@@ -1,6 +1,6 @@
 import React, { useCallback } from "react";
 import axios from "axios";
-import { useHiplabsDispatch } from "../reducers/HiplabsContext";
+import { useHiplabsDispatch } from "../HiplabsContext";
 
 const useHipolabs = () => {
   const dispatch = useHiplabsDispatch();
@@ -8,7 +8,7 @@ const useHipolabs = () => {
   const getUniversitiesForCountry = useCallback(async (country) => {
     dispatch({ type: 'SET_LOADING', isLoading: true });
     dispatch({ type: 'SET_ERROR', error: null });
-    dispatch({ type: 'SET_COUNTRY', countru: country });
+    dispatch({ type: 'SET_COUNTRY', country: country });
 
     axios.get(`http://universities.hipolabs.com/search?country=${country}`)
     .then((response) => {

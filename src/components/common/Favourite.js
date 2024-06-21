@@ -2,8 +2,8 @@ import React from "react"
 import StarBorderIcon from "@mui/icons-material/StarBorder";
 import IconButton from "@mui/material/IconButton";
 import StarIcon from "@mui/icons-material/Star";
-import { useHiplabsDispatch } from "../reducers/HiplabsContext";
-import { useHiplabsState } from "../reducers/HiplabsContext";
+import { useHiplabsDispatch } from "../HiplabsContext";
+import { useHiplabsState } from "../HiplabsContext";
 
 const Favourite = ({university}) => {
 

@@ -1,6 +1,6 @@
 import Table from "./common/Table";
 import styled from "@emotion/styled";
-import { useHiplabsState } from "./reducers/HiplabsContext";
+import { useHiplabsState } from "./HiplabsContext";
 
 const Container = styled.div`
   display: flex;

@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './components/Home';
 import Favourites from './components/Favourites';
 import Navbar from './components/Navbar';
-import { HipLabsProvider } from './components/reducers/HiplabsContext';
+import { HipLabsProvider } from './components/HiplabsContext';
 
 function App() {
   return (

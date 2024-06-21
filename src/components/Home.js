@@ -5,7 +5,7 @@ import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
 import useHipolabs from "./hooks/useHipolabs";
 import { options } from "./constants";
-import { useHiplabsState } from "./reducers/HiplabsContext";
+import { useHiplabsState } from "./HiplabsContext";
 
 const Container = styled.div`
   display: flex;
@@ -39,10 +39,10 @@ const Home =  () => {
   const [universitiesToShow, setUniversitiesToShow] = useState([]);
   const { getUniversitiesForCountry } = useHipolabs({ country: country })
 
-  const { isLoading, error, data } = useHiplabsState();
+  const { isLoading, error, data, country: currentCountry } = useHiplabsState();
   
   useEffect(() => {
-    if (!country && country == "") return;
+    if (country === currentCountry && data?.length > 0) return;
 
     getUniversitiesForCountry(country)
   }, [country])
