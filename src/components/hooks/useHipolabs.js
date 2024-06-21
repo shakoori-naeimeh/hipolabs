@@ -1,6 +1,6 @@
 import React, { useCallback } from "react";
 import axios from "axios";
-import { useHiplabsDispatch } from "../reducers/hiplabsReducer";
+import { useHiplabsDispatch } from "../reducers/HiplabsContext";
 
 const useHipolabs = () => {
   const dispatch = useHiplabsDispatch();

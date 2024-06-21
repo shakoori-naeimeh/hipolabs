@@ -5,7 +5,7 @@ import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
 import useHipolabs from "./hooks/useHipolabs";
 import { options } from "./constants";
-import { useHiplabsState } from "./reducers/hiplabsReducer";
+import { useHiplabsState } from "./reducers/HiplabsContext";
 
 const Container = styled.div`
   display: flex;
