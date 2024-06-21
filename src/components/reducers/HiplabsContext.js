@@ -35,7 +35,7 @@ const initialState = {
   error: null,
   favourites: JSON.parse(localStorage.getItem('favourites')) || [],
   country: '',
-  searchQuery: '',
+  filteredData: [],
   apiPerformance: { responseTime: null, responseCode: null },
 };
 
@@ -56,8 +56,8 @@ function hiplabsReducer(state, action) {
     case 'SET_COUNTRY': {
       return { ...state, country: action.country };
     }
-    case 'SET_SEARCH_QUERY': {
-      return { ...state, searchQuery: action.payload };
+    case 'SET_FILTERED_DATA': {
+      return { ...state, filteredData: action.filteredData };
     }
     case 'SET_API_PERFORMANCE': {
       return { ...state, apiPerformance: action.payload };

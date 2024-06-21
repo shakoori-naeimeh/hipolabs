@@ -14,44 +14,74 @@ const Container = styled.div`
   padding-top: 2rem;
 `
 
-const ResponsiveAutocomplete = styled(Autocomplete)`
-  width: 50%;
+const InputContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  width: 90%;
   margin-bottom: 2rem;
   @media (min-width: 600px) {
-    width: 15%;
+      justify-content: center;
+  }
+`;
+
+const ResponsiveAutocomplete = styled(Autocomplete)`
+  width: 43%;
+  @media (min-width: 600px) {
+    width: 20%;
+    padding-right: 2rem;
   }
 `;
 
 const Home =  () => {
   const [country, setCountry] = useState(options[0]);
   const [inputValue, setInputValue] = useState(options[0]);
+  const [searchInput, setSearchInput] = useState("");
+  const [universitiesToShow, setUniversitiesToShow] = useState([]);
   const { getUniversitiesForCountry } = useHipolabs({ country: country })
 
   const { isLoading, error, data } = useHiplabsState();
   
   useEffect(() => {
-    if (!country || country == "") return;
+    if (!country && country == "") return;
 
     getUniversitiesForCountry(country)
   }, [country])
 
+  useEffect(() => {
+    if (searchInput && searchInput !== "") {
+      setUniversitiesToShow(data?.filter(university => university.name.toLowerCase().includes(searchInput.toLowerCase())))
+    }else {
+      setUniversitiesToShow(data)
+    }
+  }, [searchInput, data])
+  
   return (
     <Container>
-      <ResponsiveAutocomplete
-        value={country}
-        onChange={(_event, newValue) => {
-          setCountry(newValue);
-        }}
-        inputValue={inputValue}
-        onInputChange={(_event, newInputValue) => {
-          setInputValue(newInputValue);
-        }}
-        options={options}
-        renderInput={(params) => <TextField {...params} label="Choose a country" />}
-      />
+      <InputContainer>
+        <ResponsiveAutocomplete
+          value={country}
+          onChange={(_event, newValue) => {
+            setCountry(newValue);
+          }}
+          inputValue={inputValue}
+          onInputChange={(_event, newInputValue) => {
+            setInputValue(newInputValue);
+          }}
+          options={options}
+          renderInput={(params) => <TextField {...params} label="Choose a country" />}
+        />
+        <TextField
+          id="outlined-controlled"
+          label="Search by name"
+          value={searchInput}
+          onChange={(event) => {
+            setSearchInput(event.target.value);
+          }}
+        />
+      </InputContainer>
       {isLoading && "Loading..."}
       {error && "Error fetching data"}
-      {data && <Table data={data} />}
+      {universitiesToShow && <Table data={universitiesToShow} />}
     </Container>
   );
 };
