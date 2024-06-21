@@ -1,20 +1,18 @@
-import React, { useState, useEffect} from "react";
+import React, { useCallback } from "react";
 import axios from "axios";
+import { useHiplabsDispatch } from "../reducers/hiplabsReducer";
 
 const useHipolabs = () => {
-  const [data, setData] = useState([])
-  const [isLoading, setIsLoading] = useState(false)
-  const [error, setError] = useState(null)
-  const [country, setCountry] = useState()
-
-  useEffect(() => {
-    if (!country) return
-    
-    setIsLoading(true)
+  const dispatch = useHiplabsDispatch();
+  
+  const getUniversitiesForCountry = useCallback(async (country) => {
+    dispatch({ type: 'SET_LOADING', isLoading: true });
+    dispatch({ type: 'SET_ERROR', error: null });
+    dispatch({ type: 'SET_COUNTRY', countru: country });
 
     axios.get(`http://universities.hipolabs.com/search?country=${country}`)
     .then((response) => {
-      const data = response.data.map((item, index) => {
+      const apiData = response.data.map((item, index) => {
         return {
           id: index,
           name: item.name,
@@ -22,17 +20,18 @@ const useHipolabs = () => {
           'web_pages': item.web_pages[0],
         }
       })
-      setData(data)
+      dispatch({ type: 'SET_DATA', data: apiData });
     })
     .catch((error) => {
-      setError(error)
+      dispatch({ type: 'SET_ERROR', error: error });
+
     })
     .finally(() => {
-      setIsLoading(false)
+      dispatch({ type: 'SET_LOADING', isLoading: false });
     })
-  }, [country])
+  }, []);
   
-  return { data, isLoading, error, getListFor: setCountry }
+  return { getUniversitiesForCountry }
 }
 
 export default useHipolabs;

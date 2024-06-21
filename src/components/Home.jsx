@@ -1,11 +1,11 @@
-import React, { useState, useEffect} from "react";
-import axios from "axios";
+import React, { useState, useEffect, useContext } from "react";
 import styled from "@emotion/styled";
 import Table from "./common/Table";
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
 import useHipolabs from "./hooks/useHipolabs";
 import { options } from "./constants";
+import { useHiplabsState } from "./reducers/hiplabsReducer";
 
 const Container = styled.div`
   display: flex;
@@ -23,21 +23,24 @@ const ResponsiveAutocomplete = styled(Autocomplete)`
 `;
 
 const Home =  () => {
-  
-  const [value, setValue] = useState(options[0]);
+  const [country, setCountry] = useState(options[0]);
   const [inputValue, setInputValue] = useState(options[0]);
-  const { data, isLoading, error, getListFor } = useHipolabs({ country: value })
+  const { getUniversitiesForCountry } = useHipolabs({ country: country })
 
+  const { isLoading, error, data } = useHiplabsState();
+  
   useEffect(() => {
-    getListFor(value)
-  }, [value])
+    if (!country || country == "") return;
+
+    getUniversitiesForCountry(country)
+  }, [country])
 
   return (
     <Container>
       <ResponsiveAutocomplete
-        value={value}
+        value={country}
         onChange={(_event, newValue) => {
-          setValue(newValue);
+          setCountry(newValue);
         }}
         inputValue={inputValue}
         onInputChange={(_event, newInputValue) => {
@@ -47,7 +50,7 @@ const Home =  () => {
         renderInput={(params) => <TextField {...params} label="Choose a country" />}
       />
       {isLoading && "Loading..."}
-      {error && {error}}
+      {error && "Error fetching data"}
       {data && <Table data={data} />}
     </Container>
   );
