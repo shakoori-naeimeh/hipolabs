@@ -1,6 +1,6 @@
 # How to run the code:
 - Download hipolabs and go to project's folder
-- Run: docker run -p 3000:80 hipolabs
+- Run `docker run -p 3000:80 hipolabs`
 
 # What is Hipolabs
 Hipolabs gets a list of universites for a specific country and shows them in the Home page. 
