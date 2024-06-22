@@ -14,11 +14,11 @@ the page. Clicking on the star removes the school from favourites and the table 
 `HipolabsContext` file contains the context providers and the reducer
 
 # State management design
-This app utalizes React's Context and Reducer for state management for several reasons:
+This app uses React's Context and Reducer for state management for several reasons:
 
 - Centralized State Management: The app needs to manage a variety of states like the list of schools, loading status, errors, favorites, filtered list of schools based on country and name. 
-Having a global state reduces the need of local states inside each component and in the future when the project grows makes it easier to pass data through the component tree without having 
-to prop-drill from parent to child components.
+Having a global state reduces the need of local states inside each component, keeps the filters in place in the search page when users navigates between pages and in the future when the
+project grows makes it easier to pass data through the component tree without having to prop-drill from parent to child components.
 
 - Performance Optimization: Having the chosen country in the global state eliminates the need to make a new api call when navigating between pages. 
 
