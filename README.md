@@ -1,5 +1,5 @@
 # How to run the code:
-- Clone the repo: git clone git@github.com:shakoori-naeimeh/hipolabs.git
+- Clone the repo: `git clone git@github.com:shakoori-naeimeh/hipolabs.git`
 - Go to project's folder
 - Run `docker run -p 3000:80 hipolabs`
 
