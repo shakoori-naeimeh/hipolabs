@@ -10,7 +10,7 @@ const useHipolabs = () => {
   const getUniversitiesForCountry = useCallback(async (country) => {
     dispatch({ type: "SET_LOADING", isLoading: true });
     dispatch({ type: "SET_ERROR", error: null });
-    dispatch({ type: "SET_COUNTRY", country: country });
+    dispatch({ type: "FILTER_BY_COUNTRY", country: country });
 
     window.performance.mark("myMeasureStart");
     
@@ -27,7 +27,6 @@ const useHipolabs = () => {
       })
 
       dispatch({ type: "SET_DATA", data: apiData });
-     
     })
     .catch((error) => {
       dispatch({ type: "SET_ERROR", error: error });
@@ -37,7 +36,6 @@ const useHipolabs = () => {
 
       window.performance.measure("myMeasure", "myMeasureStart", "myMeasureEnd");
       dispatch({ type: "SET_API_PERFORMANCE", duration: window.performance.getEntriesByType("measure")[0].duration })
-
     })
   }, []);
   

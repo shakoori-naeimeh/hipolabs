@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
 import styled from "@emotion/styled";
 import Table from "./common/Table";
-import useHipolabs from "./hooks/useHipolabs";
-import { options } from "../constants";
-import { useHipolabsState } from "./HipolabsContext";
 import { TextField, Button, Autocomplete } from "@mui/material";
+import useHipolabs from "./hooks/useHipolabs";
+import { options, defaultCountry } from "../constants";
+import { useHipolabsState } from "./HipolabsContext";
+import { useHipolabsDispatch } from "./HipolabsContext";
 
 const Container = styled.div`
   display: flex;
@@ -55,54 +56,47 @@ const Performance = styled.div`
 `
 
 const Home =  () => {
-  const { isLoading, error, data, country: currentCountry, apiPerformance } = useHipolabsState();
+  const { isLoading, error, apiPerformance, filteredData, filters } = useHipolabsState();
+  const dispatch = useHipolabsDispatch();
 
-  const [selectedCountry, setSelectedCountry] = useState(currentCountry || options[0]);
-  const [inputValue, setInputValue] = useState(options[0]);
-  const [searchInput, setSearchInput] = useState("");
-  const [universitiesToShow, setUniversitiesToShow] = useState([]);
-  const { getUniversitiesForCountry } = useHipolabs({ country: selectedCountry })
+  const { getUniversitiesForCountry } = useHipolabs()
 
   const clearAllFilters = () => {
-    setSelectedCountry(options[0]);
-    setInputValue(options[0]);
-    setSearchInput("");
+    getUniversitiesForCountry(defaultCountry)
+    dispatch({ type: "FILTER_BY_NAME", name: "" })
+  }
+
+  const filterByCountry = (country) => {
+    getUniversitiesForCountry(country)
+  }
+
+  const filterByName = (value) => {
+    dispatch({ type: "FILTER_BY_NAME", name: value })
   }
 
   useEffect(() => {
-    if (selectedCountry === currentCountry && data?.length > 0) return;
-    getUniversitiesForCountry(selectedCountry)
-  }, [selectedCountry])
-
-  useEffect(() => {
-    if (searchInput && searchInput !== "") {
-      setUniversitiesToShow(data?.filter(university => university.name.toLowerCase().includes(searchInput.toLowerCase())))
-    }else {
-      setUniversitiesToShow(data)
+    if (filters.country === "") {
+      getUniversitiesForCountry(defaultCountry)
     }
-  }, [searchInput, data])
+  }, [])
 
   return (
       <Container>
         <FiltersContainer>
           <CountryFilter
-            value={selectedCountry}
+            value={filters.country || defaultCountry}
             onChange={(_event, newValue) => {
-              setSelectedCountry(newValue);
-            }}
-            inputValue={inputValue}
-            onInputChange={(_event, newInputValue) => {
-              setInputValue(newInputValue);
+              filterByCountry(newValue);
             }}
             options={options}
-            renderInput={(params) => <TextField {...params} label="Choose a country" />}
+            renderInput={(params) => <TextField {...params} />}
           />
           <TextField
             id="outlined-controlled"
             label="Search by name"
-            value={searchInput}
+            value={filters.name}
             onChange={(event) => {
-              setSearchInput(event.target.value);
+              filterByName(event.target.value);
             }}
           />
           <ClearButton variant="text" onClick={clearAllFilters}>Clear All Filters</ClearButton>
@@ -110,7 +104,7 @@ const Home =  () => {
 
         {isLoading && "Loading..."}
         {error && "Error fetching data"}
-        {universitiesToShow && <Table data={universitiesToShow} />}
+        {filteredData && <Table data={filteredData} />}
         {apiPerformance.duration && <Performance>{`API call duration: ${apiPerformance.duration}`}, {`Status: ${error || "Success"}` }</Performance> }
       </Container>
   );

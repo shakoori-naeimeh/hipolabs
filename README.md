@@ -1,70 +1,35 @@
-# Getting Started with Create React App
+# How to run the code:
+- Download hipolabs and go to project's folder
+- Run: docker run -p 3000:80 hipolabs
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# What is Hipolabs
+Hipolabs gets a list of universites for a specific country and shows them in the Home page. 
+Clicking on the star next to each university name puts that school in favourites. 
+To see a list of the favourites click on the Favourites link in the navbad at the top of 
+the page. Clicking on the star removes the school from favourites and the table in this page.
 
-## Available Scripts
+# State management design
+This app utalizes React's Context and Reducer for state management for several reasons:
+- Centralized State Management: The app needs to manage a variety of states like the list of schools, loading status, errors, favorites, selected country, and API performance metrics. Using Context allows for centralizing this state management, making it easier to pass data through the component tree without having to prop-drill from parent to child components.
 
-In the project directory, you can run:
+- Performance Optimization: Having the chosen country in the global state eliminates the need to make a new api call when navigating between pages. 
 
-### `npm start`
+- Scalability: As the application grows, the complexity of state management can increase. This pattern is scalable and makes it easier to add new features or modify existing ones.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- Maintainability and Readability: Reducer encapsulates all the state logic and separates the state management logic from the UI components which makes the codebase cleaner and easier to understand.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- Simplified Debugging and Testing: Having a single place that handles all state changes simplifies debugging and testing. 
 
-### `npm test`
+Flexibility in State Updates: The reducer function allows for complex state logic that can handle multiple state changes in response to a single action, which is more cumbersome to achieve with useState alone.
+This is the state that the reducer maintains:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+{
+  data: array of schools from the api call,
+  isLoading: boolean to know when loading the api data is done,
+  error: error in the case that the api call fails,
+  favourites: list of favourtie schools,
+  country: the current chosen country,
+  apiPerformance: duration of the api call in milliseconds,
+}
 
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Using a reducer instead of 
