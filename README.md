@@ -27,3 +27,5 @@ project grows makes it easier to pass data through the component tree without ha
 - Maintainability and Readability: Reducer encapsulates all the state logic and separates the state management logic from the UI components which makes the codebase cleaner and easier to understand.
 
 - Simplified Debugging and Testing: Having a single place that handles all state changes simplifies debugging and testing. 
+
+Obviously, I would write tests for a real project but I skipped it for the take home exercise. I’m happy to add some tests if it’s part of the evaluation.
