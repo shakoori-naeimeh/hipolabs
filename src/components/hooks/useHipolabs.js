@@ -12,11 +12,11 @@ const useHipolabs = () => {
     dispatch({ type: "SET_ERROR", error: null });
     dispatch({ type: "SET_COUNTRY", country: country });
 
-    window.performance.mark('myMeasureStart');
+    window.performance.mark("myMeasureStart");
     
     axios.get(`${BASE_URL}/search?country=${country}`)
     .then((response) => {
-      window.performance.mark('myMeasureEnd');
+      window.performance.mark("myMeasureEnd");
       const apiData = response.data.map((item, index) => {
         return {
           id: index,
@@ -35,8 +35,8 @@ const useHipolabs = () => {
     .finally(() => {
       dispatch({ type: "SET_LOADING", isLoading: false });
 
-      window.performance.measure('myMeasure', 'myMeasureStart', 'myMeasureEnd');
-      dispatch({ type: "SET_API_PERFORMANCE", duration: window.performance.getEntriesByType('measure')[0].duration })
+      window.performance.measure("myMeasure", "myMeasureStart", "myMeasureEnd");
+      dispatch({ type: "SET_API_PERFORMANCE", duration: window.performance.getEntriesByType("measure")[0].duration })
 
     })
   }, []);

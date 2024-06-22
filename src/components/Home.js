@@ -42,7 +42,9 @@ const ClearButton = styled(Button)`
   width: fit-content;
 
   @media (min-width: 600px) {
-    padding-left: 2rem;
+    margin-left: 2rem;
+    height: fit-content;
+    align-self: center;
   }
 `
 
@@ -51,6 +53,7 @@ const Performance = styled.div`
   align-self: center;
   font-size: 0.75rem;
 `
+
 const Home =  () => {
   const { isLoading, error, data, country: currentCountry, apiPerformance } = useHiplabsState();
 
@@ -104,6 +107,7 @@ const Home =  () => {
           />
           <ClearButton variant="text" onClick={clearAllFilters}>Clear All Filters</ClearButton>
         </FiltersContainer>
+
         {isLoading && "Loading..."}
         {error && "Error fetching data"}
         {universitiesToShow && <Table data={universitiesToShow} />}

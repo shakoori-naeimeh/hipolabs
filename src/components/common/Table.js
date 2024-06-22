@@ -14,7 +14,7 @@ const DataContainer = styled.div`
   }
 `
 
-const SchoolsTable = ({ data }) => {
+const Table = ({ data }) => {
   const theme = createTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
@@ -60,4 +60,4 @@ const SchoolsTable = ({ data }) => {
   )
 };
 
-export default SchoolsTable;
+export default Table;

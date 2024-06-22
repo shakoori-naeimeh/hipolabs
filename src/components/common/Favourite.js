@@ -18,7 +18,7 @@ const Favourite = ({university}) => {
     }
 
     window.localStorage.setItem("favourites", JSON.stringify(newFavourites))
-    dispatch({ type: 'SET_FAVOURITES', favourites: newFavourites });  
+    dispatch({ type: "SET_FAVOURITES", favourites: newFavourites });  
   }
 
   return (

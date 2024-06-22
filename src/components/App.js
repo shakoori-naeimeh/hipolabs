@@ -1,13 +1,13 @@
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Home from './Home';
-import Favourites from './Favourites';
-import Navbar from './Navbar';
-import { HipLabsProvider } from './HiplabsContext';
+import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Home from "./Home";
+import Favourites from "./Favourites";
+import Navbar from "./Navbar";
+import { HiplabsProvider } from "./HiplabsContext";
 
 function App() {
   return (
-    <HipLabsProvider>
+    <HiplabsProvider>
       <Router>
       <Navbar />
         <Routes>
@@ -15,7 +15,7 @@ function App() {
           <Route path="/favourites" element={<Favourites />} />
         </Routes>
       </Router>
-    </HipLabsProvider>
+    </HiplabsProvider>
   );
 }
 
