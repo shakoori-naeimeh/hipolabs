@@ -1,6 +1,6 @@
 import React, { useCallback } from "react";
 import axios from "axios";
-import { useHipolabsDispatch } from "../HipolabsContext";
+import { useHipolabsDispatch } from "../contexts/HipolabsContext";
 
 const BASE_URL = "http://universities.hipolabs.com";
 

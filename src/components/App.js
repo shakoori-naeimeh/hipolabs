@@ -2,8 +2,8 @@ import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./Home";
 import Favourites from "./Favourites";
-import Navbar from "./Navbar";
-import { HipolabsProvider } from "./HipolabsContext";
+import Navbar from "./common/Navbar";
+import { HipolabsProvider } from "./contexts/HipolabsContext";
 
 function App() {
   return (

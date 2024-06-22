@@ -2,8 +2,8 @@ import React from "react"
 import StarBorderIcon from "@mui/icons-material/StarBorder";
 import IconButton from "@mui/material/IconButton";
 import StarIcon from "@mui/icons-material/Star";
-import { useHipolabsDispatch } from "../HipolabsContext";
-import { useHipolabsState } from "../HipolabsContext";
+import { useHipolabsDispatch } from "../contexts/HipolabsContext";
+import { useHipolabsState } from "../contexts/HipolabsContext";
 
 const Favourite = ({university}) => {
   const dispatch = useHipolabsDispatch();

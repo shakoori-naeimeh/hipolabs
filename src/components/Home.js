@@ -4,8 +4,8 @@ import Table from "./common/Table";
 import { TextField, Button, Autocomplete } from "@mui/material";
 import useHipolabs from "./hooks/useHipolabs";
 import { options, defaultCountry } from "../constants";
-import { useHipolabsState } from "./HipolabsContext";
-import { useHipolabsDispatch } from "./HipolabsContext";
+import { useHipolabsState } from "./contexts/HipolabsContext";
+import { useHipolabsDispatch } from "./contexts/HipolabsContext";
 
 const Container = styled.div`
   display: flex;
