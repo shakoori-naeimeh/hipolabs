@@ -28,15 +28,14 @@ export function HipLabsProvider({ children }) {
   );
 }
 
-
 const initialState = {
   data: [],
   isLoading: false,
   error: null,
   favourites: JSON.parse(localStorage.getItem('favourites')) || [],
-  country: '',
+  country: 'Canada',
   filteredData: [],
-  apiPerformance: { responseTime: null, responseCode: null },
+  apiPerformance: { duration: null },
 };
 
 function hiplabsReducer(state, action) {
@@ -60,7 +59,10 @@ function hiplabsReducer(state, action) {
       return { ...state, filteredData: action.filteredData };
     }
     case 'SET_API_PERFORMANCE': {
-      return { ...state, apiPerformance: action.payload };
+      return { 
+        ...state,
+        apiPerformance: { duration: action.duration },
+      };
     }
     default:
       return state;

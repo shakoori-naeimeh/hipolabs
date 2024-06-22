@@ -1,9 +1,6 @@
-import React, { useState, useEffect, useMemo} from "react";
+import React, { useMemo } from "react";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { DataGrid } from "@mui/x-data-grid";
-import StarBorderIcon from "@mui/icons-material/StarBorder";
-import IconButton from "@mui/material/IconButton";
-import StarIcon from "@mui/icons-material/Star";
 import Link from "@mui/material/Link";
 import { useMediaQuery } from "@mui/material";
 import styled from "@emotion/styled";
@@ -16,9 +13,9 @@ const DataContainer = styled.div`
     width: 50%;
   }
 `
-const theme = createTheme();
 
 const SchoolsTable = ({ data }) => {
+  const theme = createTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
   const columns = useMemo(() => [
@@ -34,7 +31,6 @@ const SchoolsTable = ({ data }) => {
       field: "name",
       headerName: "Name",
       width: isMobile ? 120 : 300,
-      sx: { fontSize: 2 },
     },
     {
       field: "state_province",
@@ -45,8 +41,7 @@ const SchoolsTable = ({ data }) => {
       field: "web_pages",
       headerName: "Website",
       width: isMobile ? 120 : 300,
-      height: 300,
-      renderCell: (params) =>  <Link href={params.value} underline="always"> {params.value} </Link>
+      renderCell: (params) => <Link href={params.value} underline="always"> {params.value} </Link>
     }
   ])
 

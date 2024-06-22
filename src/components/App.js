@@ -1,9 +1,9 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Home from './components/Home';
-import Favourites from './components/Favourites';
-import Navbar from './components/Navbar';
-import { HipLabsProvider } from './components/HiplabsContext';
+import Home from './Home';
+import Favourites from './Favourites';
+import Navbar from './Navbar';
+import { HipLabsProvider } from './HiplabsContext';
 
 function App() {
   return (

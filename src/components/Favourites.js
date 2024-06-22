@@ -9,7 +9,6 @@ const Container = styled.div`
   padding-top: 2rem;
 `
 
-
 const Favourites = () => {
   const { favourites } = useHiplabsState();
 

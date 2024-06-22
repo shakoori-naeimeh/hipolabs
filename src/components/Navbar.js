@@ -8,11 +8,14 @@ const Nav = styled.nav`
   padding-top: 16px;
 `
 
+const StyledLink = styled(Link)`
+  padding: 5px;
+`
 const Navbar = () => {
   return (
     <Nav>
-      <Link to="/" style={{ padding: 5 }}>Home</Link>
-      <Link to="/favourites" style={{ padding: 5 }} >Favourites</Link>
+      <StyledLink to="/">Home</StyledLink>
+      <StyledLink to="/favourites" >Favourites</StyledLink>
     </Nav>
   );
 }

@@ -6,7 +6,6 @@ import { useHiplabsDispatch } from "../HiplabsContext";
 import { useHiplabsState } from "../HiplabsContext";
 
 const Favourite = ({university}) => {
-
   const dispatch = useHiplabsDispatch();
   const { favourites } = useHiplabsState();
 
