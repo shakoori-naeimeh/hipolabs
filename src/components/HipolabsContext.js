@@ -1,30 +1,30 @@
 
 import React, { createContext, useContext, useReducer } from "react";
 
-export const HiplabsStateContext = createContext(null);
+export const HipolabsStateContext = createContext(null);
 
-export const HiplabsDispatchContext = createContext(null);
+export const HipolabsDispatchContext = createContext(null);
 
-export function useHiplabsState() {
-  return useContext(HiplabsStateContext);
+export function useHipolabsState() {
+  return useContext(HipolabsStateContext);
 }
 
-export function useHiplabsDispatch() {
-  return useContext(HiplabsDispatchContext);
+export function useHipolabsDispatch() {
+  return useContext(HipolabsDispatchContext);
 }
 
-export function HiplabsProvider({ children }) {
+export function HipolabsProvider({ children }) {
   const [state, dispatch] = useReducer(
-    hiplabsReducer,
+    hipolabsReducer,
     initialState
   );
 
   return (
-    <HiplabsStateContext.Provider value={state}>
-      <HiplabsDispatchContext.Provider value={dispatch}>
+    <HipolabsStateContext.Provider value={state}>
+      <HipolabsDispatchContext.Provider value={dispatch}>
         {children}
-      </HiplabsDispatchContext.Provider>
-    </HiplabsStateContext.Provider>
+      </HipolabsDispatchContext.Provider>
+    </HipolabsStateContext.Provider>
   );
 }
 
@@ -38,7 +38,7 @@ const initialState = {
   apiPerformance: { duration: null },
 };
 
-function hiplabsReducer(state, action) {
+function hipolabsReducer(state, action) {
   switch (action.type) {
     case "SET_LOADING": {
       return { ...state, isLoading: action.isLoading, error: null };

@@ -1,6 +1,6 @@
 import Table from "./common/Table";
 import styled from "@emotion/styled";
-import { useHiplabsState } from "./HiplabsContext";
+import { useHipolabsState } from "./HipolabsContext";
 
 const Container = styled.div`
   display: flex;
@@ -10,7 +10,7 @@ const Container = styled.div`
 `
 
 const Favourites = () => {
-  const { favourites } = useHiplabsState();
+  const { favourites } = useHipolabsState();
 
   return (
     <Container>

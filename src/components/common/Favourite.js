@@ -2,12 +2,12 @@ import React from "react"
 import StarBorderIcon from "@mui/icons-material/StarBorder";
 import IconButton from "@mui/material/IconButton";
 import StarIcon from "@mui/icons-material/Star";
-import { useHiplabsDispatch } from "../HiplabsContext";
-import { useHiplabsState } from "../HiplabsContext";
+import { useHipolabsDispatch } from "../HipolabsContext";
+import { useHipolabsState } from "../HipolabsContext";
 
 const Favourite = ({university}) => {
-  const dispatch = useHiplabsDispatch();
-  const { favourites } = useHiplabsState();
+  const dispatch = useHipolabsDispatch();
+  const { favourites } = useHipolabsState();
 
   const updateFavourites = () => {
     let newFavourites = []

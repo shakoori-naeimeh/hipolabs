@@ -3,11 +3,11 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./Home";
 import Favourites from "./Favourites";
 import Navbar from "./Navbar";
-import { HiplabsProvider } from "./HiplabsContext";
+import { HipolabsProvider } from "./HipolabsContext";
 
 function App() {
   return (
-    <HiplabsProvider>
+    <HipolabsProvider>
       <Router>
       <Navbar />
         <Routes>
@@ -15,7 +15,7 @@ function App() {
           <Route path="/favourites" element={<Favourites />} />
         </Routes>
       </Router>
-    </HiplabsProvider>
+    </HipolabsProvider>
   );
 }
 

@@ -3,7 +3,7 @@ import styled from "@emotion/styled";
 import Table from "./common/Table";
 import useHipolabs from "./hooks/useHipolabs";
 import { options } from "../constants";
-import { useHiplabsState } from "./HiplabsContext";
+import { useHipolabsState } from "./HipolabsContext";
 import { TextField, Button, Autocomplete } from "@mui/material";
 
 const Container = styled.div`
@@ -55,9 +55,9 @@ const Performance = styled.div`
 `
 
 const Home =  () => {
-  const { isLoading, error, data, country: currentCountry, apiPerformance } = useHiplabsState();
+  const { isLoading, error, data, country: currentCountry, apiPerformance } = useHipolabsState();
 
-  const [selectedCountry, setSelectedCountry] = useState(options[0]);
+  const [selectedCountry, setSelectedCountry] = useState(currentCountry || options[0]);
   const [inputValue, setInputValue] = useState(options[0]);
   const [searchInput, setSearchInput] = useState("");
   const [universitiesToShow, setUniversitiesToShow] = useState([]);

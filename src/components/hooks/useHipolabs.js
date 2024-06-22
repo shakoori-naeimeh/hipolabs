@@ -1,11 +1,11 @@
 import React, { useCallback } from "react";
 import axios from "axios";
-import { useHiplabsDispatch } from "../HiplabsContext";
+import { useHipolabsDispatch } from "../HipolabsContext";
 
 const BASE_URL = "http://universities.hipolabs.com";
 
 const useHipolabs = () => {
-  const dispatch = useHiplabsDispatch();
+  const dispatch = useHipolabsDispatch();
   
   const getUniversitiesForCountry = useCallback(async (country) => {
     dispatch({ type: "SET_LOADING", isLoading: true });
