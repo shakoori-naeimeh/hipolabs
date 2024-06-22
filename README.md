@@ -1,5 +1,5 @@
 # How to run the code:
-- Download hipolabs and go to project's folder
+- Go to project's folder
 - Run `docker run -p 3000:80 hipolabs`
 
 # What is Hipolabs
