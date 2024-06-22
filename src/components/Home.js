@@ -18,10 +18,12 @@ const FiltersContainer = styled.div`
   flex-direction: column;
   width: 90%;
   margin-bottom: 2rem;
+
   @media (min-width: 600px) {
     justify-content: flex-start;
     flex-direction: row;
   }
+
   @media (min-width: 1800px) {
       width: 50%;
   }
@@ -29,6 +31,7 @@ const FiltersContainer = styled.div`
 
 const CountryFilter = styled(Autocomplete)`
   padding-bottom: 0.5rem;
+
   @media (min-width: 600px) {
     width: 30%;
     padding-right: 2rem;
@@ -37,6 +40,7 @@ const CountryFilter = styled(Autocomplete)`
 
 const ClearButton = styled(Button)`
   width: fit-content;
+
   @media (min-width: 600px) {
     padding-left: 2rem;
   }
@@ -74,7 +78,6 @@ const Home =  () => {
       setUniversitiesToShow(data)
     }
   }, [searchInput, data])
-
 
   return (
       <Container>

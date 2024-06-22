@@ -55,9 +55,6 @@ function hiplabsReducer(state, action) {
     case 'SET_COUNTRY': {
       return { ...state, country: action.country };
     }
-    case 'SET_FILTERED_DATA': {
-      return { ...state, filteredData: action.filteredData };
-    }
     case 'SET_API_PERFORMANCE': {
       return { 
         ...state,
