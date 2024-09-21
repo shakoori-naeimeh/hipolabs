@@ -1,6 +1,7 @@
 # How to run the code:
 - Clone the repo: `git clone git@github.com:shakoori-naeimeh/hipolabs.git`
 - Go to project's folder
+- Run `docker build -t hipolabs .`
 - Run `docker run -p 3000:80 hipolabs`
 
 # What is Hipolabs
